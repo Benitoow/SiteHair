@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/src/styles/main.css">
+        <script src="/src/scripts/main.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+        <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js"></script>
+        <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
+    </head>
+<body>
+    <header>
+        <h1>Aux P'tits Soins Coiffure</h1>
+        <nav>
+            <ul>
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#prestations">Prestations</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil">
+            <img src="/src/images/img-salon-1.webp" alt="Photo du salon"> 
+            <h2>Des soins qui font du bien</h2>
+            <p>Sandrine et Nathalie, coiffeuses visagistes expérimentées, vous accueillent dans leur salon chaleureux et convivial.</p>
+        </section>
+
+        <section id="prestations">
+            <h2>Nos Prestations</h2>
+
+            <h3>Femme</h3>
+            <img src="/src/images/female-back-with-long-straight-blonde-hair-hairdressing-salon_285484-1791 (1).jpg" alt="Exemple prestation femme">
+            <ul>
+                <li>Shampooing Coupe Brushing: 40€</li>
+                <li>Shampooing Brushing 25€</li>
+                <li>Shampooing Coupe Soin Brushing / Séchage Couleur: 69€</li>
+                <li>Shampooing Coupe Soin Brushing / Séchage Couleur INOA: 79€</li>
+                <li>Shampooing Coupe Soin Brushing Balayage: 79€</li>
+                <li>Shampooing Coupe Soin mini vague sans ammoniaque: 81€</li>
+                <li>Soin Kératine: 25€</li>
+                <li>Patine: 15€</li>
+                <li>* Les tarifs sont applicables pour les cheveux courts</li>
+            </ul>
+
+            <h3>Homme</h3>
+            <img src="/src/images/coiffure-homme.webp" alt="Exemple prestation homme">
+            <ul>
+                <li>Coupe: 20€</li>
+                <li>Coupe Couronne 15€</li>
+            </ul>
+
+            <h3>Enfant (moins de 10 ans)</h3>
+            <img src="/src/images/coiffure-enfant.webp" alt="Exemple prestation enfant">
+            <ul>
+                <li>Coupe: 15€</li>
+            </ul>
+
+            <h3>ONCO-COIFFURE - PROTHÉSISTE CAPILLAIRE</h3>
+             <img src="/src/images/onco-coiffure.webp" alt="Exemple onco-coiffure">
+
+            <p>Découvrez notre service d'Onco-coiffure et de prothésiste capillaire où nous mettons tout notre cœur et notre expérience pour vous offrir un suivi chaleureux, personnalisé et intimiste dans votre parcours de soins.</p>
+            <p>Nous vous proposons des soins capillaires naturels et des prothèses capillaires de qualité ultra confortables adaptées à votre visage.</p>
+            <p>Nous vous accompagnons avant, pendant et après la chute des cheveux.</p>
+
+            <h3>Tarifs</h3>
+            <ul>
+                <li>Masque à l'argile, modelage crânien, des mains et des avant-bras aux huiles naturelles: 40€</li>
+                <li>Mise à nu, masque à l'argile, modelage crânien, des mains et des avant bras: 60€</li>
+                <li>Prothèses capillaires classe 1, 2, 3: différents tarifs (AGRÉE CPAM)</li>
+            </ul>
+            <p>N'hésitez pas à nous contacter, nous restons à votre disposition pour tous renseignements complémentaires.</p>
+
+
+
+        </section>
+
+        <section id="contact">
+            <h2>Nous Contacter</h2>
+            <p>28 bis grande rue 95760 Valmondois</p>
+            <p>06.82.68.63.43</p>
+            <p><a href="mailto:sandrine12rousseau@orange.fr">sandrine12rousseau@orange.fr</a></p>
+            <div id="map" style="height: 400px; width: 100%;"></div> <!-- Conteneur pour la carte -->
+            
+            <form action="traitement_formulaire.php" method="post">
+                <div>
+                    <label for="name">Nom:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="phone">Téléphone:</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                </div>
+                <div>
+                    <button type="submit">Envoyer</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2023 Aux P'tits Soins Coiffure </p>
+    </footer>
+</body>
+</html>

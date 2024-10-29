@@ -1,0 +1,214 @@
+/* Variables CSS pour faciliter la personnalisation */
+:root {
+  --primary-color: #e67e22; /* Couleur principale (orange) */
+  --secondary-color: #f4d03c; /* Couleur secondaire (jaune doré) */
+  --text-color: #333;
+  --background-color: #f5f5f5;
+  --font-family: 'Roboto', sans-serif;
+  --header-height: 60px;
+}
+
+/* Style global */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main {
+  flex: 1; /* Ajouté pour prendre tout l'espace disponible */
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: var(--header-height);
+}
+
+header h1 {
+  margin: 0 20px 0 0;
+}
+
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--secondary-color);
+}
+
+/* Main content */
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5em;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: var(--primary-color);
+}
+
+section p {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles pour le formulaire de contact */
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input, form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  grid-column: span 2;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  form {
+    grid-template-columns: 1fr;
+  }
+  form button {
+    grid-column: span 1;
+  }
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: auto; /* Ajouté pour pousser le footer en bas */
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form button {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  nav ul li {
+    margin: 5px 0;
+  }
+}
+
+/* Styles spécifiques */
+.highlight {
+  background-color: var(--secondary-color);
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  margin-bottom: 1em;
+}
+
+/* Animations */
+.animated-text {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

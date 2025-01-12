@@ -1,6 +1,8 @@
 /* Importer les polices Google */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
 /* Variables CSS */
 :root {
@@ -23,6 +25,7 @@
 body {
   font-family: var(--font-family);
   color: var(--text-color);
+  font-size: 16px;
   line-height: 1.7;
   background-color: var(--body-bg);
 }
@@ -38,6 +41,7 @@ a:hover {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -55,9 +59,24 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  font-size: 1.8rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
 ul {
   list-style-type: disc;
   padding-left: 20px;
+  font-family: 'Poppins', sans-serif; /* Add your desired font family */
+}
+
+li {
+  font-family: 'Poppins', sans-serif; /* Add your desired font family */
+  font-size: 1rem; /* Adjust the font size if needed */
+  color: var(--text-color); /* Use a variable for text color */
 }
 
 img {
@@ -451,4 +470,10 @@ footer .container {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+.prix {
+  font-weight: bold;
+  font-size: 1.2em; 
+  color: #E65100;
 }

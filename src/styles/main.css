@@ -3,6 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /* Variables CSS */
 :root {
@@ -11,7 +14,6 @@
   --text-color: #333;         /* Texte gris foncé */
   --body-bg: #f8fafc;         /* Fond blanc cassé */
   --font-family: 'Poppins', sans-serif;
-  --transition-duration: 0.3s;
   --shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -28,6 +30,7 @@ body {
   font-size: 16px;
   line-height: 1.7;
   background-color: var(--body-bg);
+  padding-top: 80px; /* Adjust based on header height */
 }
 
 a {
@@ -85,6 +88,10 @@ img {
   margin-bottom: 1.5rem;
   border-radius: 8px;
   box-shadow: var(--shadow);
+  @apply rounded-lg shadow-lg max-w-full h-auto;
+  aspect-ratio: attr(width) / attr(height);
+  object-fit: cover;
+  loading: lazy;
 }
 
 /* Conteneur */
@@ -92,11 +99,22 @@ img {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 2rem;
+  width: min(960px, 100% - 2rem);
+  margin-inline: auto;
 }
 
 /* Sections */
 section {
   padding: 6rem 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  will-change: opacity, transform; /* Optimize animations */
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Boutons */
@@ -109,6 +127,11 @@ section {
   text-decoration: none;
   transition: all var(--transition-duration) ease;
   box-shadow: var(--shadow);
+  @apply bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
 }
 
 .btn:hover {
@@ -116,15 +139,25 @@ section {
   transform: translateY(-2px);
 }
 
+.btn:focus {
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.3);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
 /* En-tête */
 header {
-  position: static;
+  position: fixed; /* Change from static to fixed */
   top: 0;
   left: 0;
   right: 0;
   z-index: 50;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(5px);
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95); /* Increase opacity */
+  backdrop-filter: blur(10px); /* Increase blur effect */
+  box-shadow: var(--shadow);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -146,6 +179,7 @@ nav ul {
   padding: 0;
   display: flex;
   align-items: center;
+  gap: 1.5rem;
 }
 
 nav li {
@@ -168,6 +202,12 @@ nav a:hover {
 /* Menu mobile */
 #mobile-menu {
   display: none;
+  transition: transform 0.3s ease;
+  transform: translateY(-100%);
+}
+
+#mobile-menu.show {
+  transform: translateY(0);
 }
 
 @media (max-width: 768px) {
@@ -194,6 +234,14 @@ nav a:hover {
     padding: 1rem 0;
     text-align: center;
     border-bottom: 1px solid #eee;
+  }
+
+  /* Fix touch targets */
+  nav a {
+    padding: 1rem 1.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -289,6 +337,8 @@ nav a:hover {
   background-repeat: no-repeat;
   background-position: center;
   padding: 8rem 0;
+  background-blend-mode: overlay;
+  background-color: rgba(0,0,0,0.5);
 }
 
 #temoignages .container {
@@ -354,6 +404,8 @@ blockquote {
   border-radius: 8px;
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
+  aspect-ratio: 16/9;
+  width: 100%;
 }
 
 #contact form {
@@ -400,6 +452,18 @@ blockquote {
 
 #contact button:hover {
   background-color: var(--secondary-color);
+}
+
+#contact input:focus,
+#contact textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.1);
+}
+
+#contact input:invalid,
+#contact textarea:invalid {
+  border-color: #dc2626;
 }
 
 /* Pied de page */
@@ -476,4 +540,33 @@ footer .container {
   font-weight: bold;
   font-size: 1.2em; 
   color: #E65100;
+  @apply font-semibold text-blue-600;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Price list styling */
+.list-disc li {
+  @apply mb-2 text-gray-700;
+}
+
+/* Add dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-bg: #1a1a1a;
+    --text-color: #f0f0f0;
+  }
+  
+  header {
+    background-color: rgba(26, 26, 26, 0.95);
+  }
+}
+
+/* Add smooth transitions for all interactive elements */
+a, button, input, textarea {
+  transition: all 0.2s ease;
 }

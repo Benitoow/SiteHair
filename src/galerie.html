@@ -3,25 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/styles/main.css"> 
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+    <script src="/src/scripts/main.js" defer></script>
+    <link rel="stylesheet" href="/src/styles/gallery.css">
     <title>Galerie - Aux P'tits Soins Coiffure</title>
 </head>
 <body>
-    <header>
-        <div class="container mx-auto">
+    <header class="bg-white py-4 shadow-md fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto flex justify-between items-center px-4">
             <a href="index.html" class="text-2xl font-bold text-gray-800">Aux P'tits Soins Coiffure</a>
+            <nav>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html#accueil" class="hover:text-blue-500">Accueil</a></li>
+                    <li><a href="index.html#prestations" class="hover:text-blue-500">Prestations</a></li>
+                    <li><a href="galerie.html" class="hover:text-blue-500">Galerie</a></li>
+                    <li><a href="index.html#contact" class="hover:text-blue-500">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <main>
-        <section class="container mx-auto py-16">
-            <h2 class="text-3xl font-bold mb-8">Notre Galerie</h2>
+    <main class="pt-20">
+        <section class="container mx-auto py-16 px-4">
+            <h1 class="text-4xl font-bold mb-8 text-center">Notre Galerie</h1>
             
-            </section>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="gallery-item">
+                    <img 
+                        src="/src/images/produit.jpg" 
+                        alt="Produits de coiffure professionnels" 
+                        class="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        loading="lazy"
+                        onerror="this.onerror=null; this.src='/src/images/placeholder.jpg';"
+                    >
+                </div>
+                <div class="gallery-item">
+                    <img 
+                        src="/src/images/produit2.jpg" 
+                        alt="Gamme de produits capillaires" 
+                        class="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                        loading="lazy"
+                        onerror="this.onerror=null; this.src='/src/images/placeholder.jpg';"
+                    >
+                </div>
+                <div class="gallery-item">
+                    <img src="/src/images/onco.jpg" alt="Coiffure exemple 1" class="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                </div>
+                <div class="gallery-item">
+                    <img src="/src/images/WhatsApp Image 2024-12-02 at 13.30.03.jpeg" alt="Coiffure exemple 1" class="w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 hidden z-50">
+            <button class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+            <div class="flex items-center justify-center h-full">
+                <button class="text-white text-4xl px-4 absolute left-4">&lt;</button>
+                <img src="" alt="" class="max-h-[90vh] max-w-[90vw] object-contain">
+                <button class="text-white text-4xl px-4 absolute right-4">&gt;</button>
+            </div>
+        </div>
     </main>
 
-    <footer>
-        <p>© 2025 Aux P'tits Soins Coiffure</p>
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <p>28 bis grande rue</p>
+                    <p>95760 Valmondois</p>
+                    <p>06.82.68.63.43</p>
+                </div>
+            <div class="text-center mt-8 pt-8 border-t border-gray-700">
+                <p>©2025 Aux P'tits Soins Coiffure - Tous droits réservés</p>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

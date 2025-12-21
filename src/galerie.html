@@ -21,87 +21,121 @@
     <!-- Preconnect pour performances -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/src/styles/global.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- GLightbox - Galerie lightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    
     <title>Galerie | Aux P'tits Soins Coiffure | Valmondois 95</title>
-    <style>
-        body { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
-    </style>
 </head>
-<body class="bg-gray-50">
+<body style="background: #fafafa;">
     <!-- Header -->
     <header class="bg-white fixed top-0 left-0 right-0 z-50 shadow-md" role="banner">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">Aux P'tits Soins Coiffure</a>
             <nav role="navigation" aria-label="Navigation principale">
-                <ul class="flex gap-6">
+                <ul class="desktop-nav flex gap-6">
                     <li><a href="index.html#accueil" class="text-gray-700 hover:text-orange-500 transition-colors">Accueil</a></li>
                     <li><a href="index.html#onco-coiffure" class="text-gray-700 hover:text-orange-500 transition-colors">Onco-Coiffure</a></li>
                     <li><a href="index.html#prestations" class="text-gray-700 hover:text-orange-500 transition-colors">Prestations</a></li>
                     <li><a href="galerie.html" class="text-orange-500 font-semibold">Galerie</a></li>
                     <li><a href="index.html#contact" class="text-gray-700 hover:text-orange-500 transition-colors">Contact</a></li>
                 </ul>
+                <!-- Menu burger mobile -->
+                <div class="burger" onclick="toggleMobileMenu()" aria-label="Menu" role="button" tabindex="0">
+                    <span></span><span></span><span></span>
+                </div>
             </nav>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html#accueil">Accueil</a>
+                <a href="index.html#onco-coiffure">Onco-Coiffure</a>
+                <a href="index.html#prestations">Prestations</a>
+                <a href="galerie.html">Galerie</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
         </div>
     </header>
+
+    <!-- Boutons flottants de contact -->
+    <div class="floating-contact">
+        <a href="tel:0682686343" class="floating-btn phone" aria-label="Appeler le salon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+        <a href="mailto:sandrine12rousseau@orange.fr" class="floating-btn email" aria-label="Envoyer un email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+    </div>
 
     <main class="pt-24" role="main">
         <!-- Hero -->
         <section class="text-center py-12 bg-gradient-to-b from-orange-50 to-gray-50">
-            <h1 class="text-5xl font-bold text-orange-500 mb-4">Notre Galerie</h1>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Découvrez nos réalisations, notre salon et nos produits de qualité</p>
+            <h1 class="text-5xl font-bold text-orange-500 mb-4" data-aos="fade-down">Notre Galerie</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-aos="fade-up">Découvrez nos réalisations, notre salon et nos produits de qualité</p>
+            <p class="text-gray-500 mt-4" data-aos="fade-up" data-aos-delay="100">💡 Cliquez sur une image pour l'agrandir</p>
         </section>
 
+        <!-- Navigation rapide galerie -->
+        <nav class="sticky top-16 z-40 bg-transparent py-4" data-aos="fade-down">
+            <div class="max-w-6xl mx-auto px-4">
+                <ul class="flex flex-wrap justify-center gap-4 text-sm">
+                    <li><a href="#salon" class="px-4 py-2 rounded-full bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors">🏠 Salon</a></li>
+                    <li><a href="#realisations" class="px-4 py-2 rounded-full bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors">✨ Réalisations</a></li>
+                    <li><a href="#onco" class="px-4 py-2 rounded-full bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors">💗 Onco-Coiffure</a></li>
+                    <li><a href="#produits" class="px-4 py-2 rounded-full bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors">🧴 Produits</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <!-- Section Salon -->
-        <section class="py-12 px-4">
+        <section id="salon" class="py-16 px-4">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-orange-500 text-center mb-8">🏠 Notre Salon</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                        <img src="images/salon.jpg" alt="Intérieur du salon" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                        <div class="p-4">
-                            <p class="text-gray-700 font-medium">Notre espace accueil</p>
+                <h2 class="text-3xl font-bold text-orange-500 text-center mb-2" data-aos="fade-up">🏠 Notre Salon</h2>
+                <p class="text-center text-gray-600 mb-10" data-aos="fade-up">Un espace chaleureux et intimiste à Valmondois</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center">
+                    <a href="images/salon.jpg" class="glightbox gallery-item" data-gallery="salon" data-aos="fade-up" data-aos-delay="100">
+                        <img src="images/salon.jpg" alt="Intérieur du salon de coiffure Aux P'tits Soins Coiffure à Valmondois" class="w-full h-64 object-cover">
+                        <div class="overlay">
+                            <p class="font-semibold">Notre espace accueil</p>
                         </div>
-                    </div>
-                    <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                        <img src="images/img-salon-1.webp" alt="Salon de coiffure" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                        <div class="p-4">
-                            <p class="text-gray-700 font-medium">Ambiance chaleureuse</p>
+                    </a>
+                    <a href="images/img-salon-1.webp" class="glightbox gallery-item" data-gallery="salon" data-aos="fade-up" data-aos-delay="200">
+                        <img src="images/img-salon-1.webp" alt="Salon de coiffure intimiste et convivial Valmondois 95" class="w-full h-64 object-cover">
+                        <div class="overlay">
+                            <p class="font-semibold">Ambiance chaleureuse</p>
                         </div>
-                    </div>
-                    <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                        <img src="images/optitsoin.webp" alt="Aux P'tits Soins" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                        <div class="p-4">
-                            <p class="text-gray-700 font-medium">Un cadre intimiste</p>
-                        </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Section Réalisations -->
-        <section class="py-12 px-4 bg-orange-50">
+        <section id="realisations" class="py-16 px-4 bg-gradient-to-b from-orange-50 to-white">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-orange-500 text-center mb-8">✨ Nos Réalisations</h2>
+                <h2 class="text-3xl font-bold text-orange-500 text-center mb-2" data-aos="fade-up">✨ Nos Réalisations</h2>
+                <p class="text-center text-gray-600 mb-10" data-aos="fade-up">Couleurs, coupes et transformations par Sandrine et Nathalie</p>
                 
-                <!-- Avant / Après - Format spécial -->
-                <div class="mb-12">
+                <!-- Avant / Après - Mise en avant -->
+                <div class="mb-16" data-aos="fade-up">
                     <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6">🔄 Avant / Après</h3>
                     <div class="max-w-4xl mx-auto">
-                        <!-- Balayage 2 tons -->
-                        <div class="card-hover bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
                             <div class="grid grid-cols-2">
-                                <div class="relative">
+                                <a href="images/Avant balayage 2 tons, patine et soin à la kératine.jpg" class="glightbox relative group" data-gallery="avant-apres" data-glightbox="title: Avant - Balayage 2 tons">
                                     <div class="absolute top-4 left-4 bg-gray-800 text-white px-4 py-2 rounded-full text-sm font-semibold z-10">AVANT</div>
-                                    <img src="images/Avant balayage 2 tons, patine et soin à la kératine.jpg" alt="Avant balayage" class="w-full h-80 object-cover" width="400" height="320" loading="lazy">
-                                </div>
-                                <div class="relative">
+                                    <img src="images/Avant balayage 2 tons, patine et soin à la kératine.jpg" alt="Avant transformation balayage" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                                </a>
+                                <a href="images/après  balayage 2 tons, patine et soin à la kératine.jpg" class="glightbox relative group" data-gallery="avant-apres" data-glightbox="title: Après - Balayage 2 tons, patine et kératine">
                                     <div class="absolute top-4 right-4 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold z-10">APRÈS</div>
-                                    <img src="images/après  balayage 2 tons, patine et soin à la kératine.jpg" alt="Après balayage" class="w-full h-80 object-cover" width="400" height="320" loading="lazy">
-                                </div>
+                                    <img src="images/après  balayage 2 tons, patine et soin à la kératine.jpg" alt="Après transformation balayage 2 tons patine kératine" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                                </a>
                             </div>
                             <div class="p-4 text-center bg-gradient-to-r from-orange-50 to-orange-100">
                                 <p class="text-gray-800 font-semibold">Balayage 2 tons, patine et soin à la kératine</p>
@@ -110,133 +144,207 @@
                     </div>
                 </div>
 
-                <!-- Couleurs & Coupes -->
-                <div class="mb-12">
+                <!-- Grille Couleurs & Coupes -->
+                <div data-aos="fade-up">
                     <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6">🎨 Couleurs & Coupes</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Couleur douce et balayage 1.jpg" alt="Couleur douce balayage" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Couleur douce et balayage</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <a href="images/Couleur douce et balayage 1.jpg" class="glightbox gallery-item aspect-square" data-gallery="couleurs" data-glightbox="title: Couleur douce et balayage">
+                            <img src="images/Couleur douce et balayage 1.jpg" alt="Couleur douce et balayage naturel" class="w-full h-full object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold text-sm">Couleur douce</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Couleur douce et balayage 2.jpg" alt="Balayage naturel" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Balayage naturel</p>
+                        </a>
+                        <a href="images/Couleur douce et balayage 2.jpg" class="glightbox gallery-item aspect-square" data-gallery="couleurs" data-glightbox="title: Balayage naturel lumineux">
+                            <img src="images/Couleur douce et balayage 2.jpg" alt="Balayage naturel lumineux" class="w-full h-full object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold text-sm">Balayage naturel</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/platine et patine gris perle sur une coupe structurée 1.jpg" alt="Platine gris perle" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Platine et patine gris perle</p>
+                        </a>
+                        <a href="images/platine et patine gris perle sur une coupe structurée 1.jpg" class="glightbox gallery-item aspect-square" data-gallery="couleurs" data-glightbox="title: Platine et patine gris perle">
+                            <img src="images/platine et patine gris perle sur une coupe structurée 1.jpg" alt="Coloration platine gris perle" class="w-full h-full object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold text-sm">Platine gris perle</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/platine et patine gris perle sur une coupe structurée.jpg" alt="Coupe structurée gris perle" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Coupe structurée gris perle</p>
+                        </a>
+                        <a href="images/platine et patine gris perle sur une coupe structurée.jpg" class="glightbox gallery-item aspect-square" data-gallery="couleurs" data-glightbox="title: Coupe structurée gris perle">
+                            <img src="images/platine et patine gris perle sur une coupe structurée.jpg" alt="Coupe structurée gris perle" class="w-full h-full object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold text-sm">Coupe structurée</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section Onco-Coiffure -->
-        <section class="py-12 px-4">
+        <section id="onco" class="py-16 px-4">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-orange-500 text-center mb-8">💗 Onco-Coiffure & Prothésiste Capillaire</h2>
+                <h2 class="text-3xl font-bold text-orange-500 text-center mb-2" data-aos="fade-up">💗 Onco-Coiffure & Prothésiste Capillaire</h2>
+                <p class="text-center text-gray-600 mb-10" data-aos="fade-up">Accompagnement personnalisé et solutions de qualité</p>
+                
+                <!-- Badges certifications -->
+                <div class="flex flex-wrap justify-center gap-6 mb-12" data-aos="fade-up">
+                    <div class="certification-badge flex items-center gap-3">
+                        <img src="images/Logo_Institut_national_du_cancer.svg.png" alt="Certifié INCa" class="h-12 object-contain">
+                        <span class="font-semibold text-gray-700">Certifié INCa</span>
+                    </div>
+                    <div class="certification-badge flex items-center gap-3">
+                        <img src="images/Aide-financiere-Securite-sociale.jpg" alt="Agréé CPAM" class="h-12 object-contain">
+                        <span class="font-semibold text-gray-700">Agréé CPAM</span>
+                    </div>
+                </div>
                 
                 <!-- Prothèses capillaires -->
-                <div class="mb-10">
-                    <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6">👩‍🦰 Prothèses Capillaires</h3>
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6" data-aos="fade-up">👩‍🦰 Prothèses Capillaires</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Prothèse capillaire cheveux naturels.jpg" alt="Prothèse capillaire cheveux naturels" class="w-full h-72 object-cover" width="400" height="288" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Prothèse capillaire cheveux naturels</p>
+                        <a href="images/Prothèse capillaire cheveux naturels.jpg" class="glightbox gallery-item" data-gallery="onco" data-glightbox="title: Prothèse capillaire cheveux naturels - Agréé CPAM" data-aos="fade-up" data-aos-delay="100">
+                            <img src="images/Prothèse capillaire cheveux naturels.jpg" alt="Prothèse capillaire en cheveux naturels agréée CPAM" class="w-full h-72 object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold">Prothèse cheveux naturels</p>
+                                <p class="text-sm text-orange-300">Agréé CPAM</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/onco.jpg" alt="Notre collection de prothèses" class="w-full h-72 object-cover" width="400" height="288" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Notre collection de prothèses</p>
+                        </a>
+                        <a href="images/onco.jpg" class="glightbox gallery-item" data-gallery="onco" data-glightbox="title: Notre collection de prothèses capillaires" data-aos="fade-up" data-aos-delay="200">
+                            <img src="images/onco.jpg" alt="Collection de prothèses capillaires certifié INCa" class="w-full h-72 object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold">Notre collection</p>
+                                <p class="text-sm text-orange-300">Certifié INCa</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
                 <!-- Collection de Turbans -->
                 <div>
-                    <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6">🧕 Collection Hiver de Turbans</h3>
+                    <h3 class="text-2xl font-semibold text-gray-700 text-center mb-6" data-aos="fade-up">🧕 Collection de Turbans</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Collection hiver de turbans 1.jpg" alt="Turban élégant" class="w-full h-72 object-cover" width="400" height="288" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Turban élégant</p>
+                        <a href="images/Collection hiver de turbans 1.jpg" class="glightbox gallery-item" data-gallery="turbans" data-glightbox="title: Turban élégant - Collection Hiver" data-aos="fade-up" data-aos-delay="100">
+                            <img src="images/Collection hiver de turbans 1.jpg" alt="Turban élégant collection hiver" class="w-full h-72 object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold">Turban élégant</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Collection hiver de turbans 2.jpg" alt="Turban coloré" class="w-full h-72 object-cover" width="400" height="288" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Turban coloré</p>
+                        </a>
+                        <a href="images/Collection hiver de turbans 2.jpg" class="glightbox gallery-item" data-gallery="turbans" data-glightbox="title: Turban coloré tendance" data-aos="fade-up" data-aos-delay="200">
+                            <img src="images/Collection hiver de turbans 2.jpg" alt="Turban coloré tendance" class="w-full h-72 object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold">Turban coloré</p>
                             </div>
-                        </div>
-                        <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                            <img src="images/Collection hiver de turbans 3 (Banner).jpg" alt="Notre sélection" class="w-full h-72 object-cover" width="400" height="288" loading="lazy">
-                            <div class="p-4">
-                                <p class="text-gray-700 font-medium">Notre sélection complète</p>
+                        </a>
+                        <a href="images/Collection hiver de turbans 3 (Banner).jpg" class="glightbox gallery-item" data-gallery="turbans" data-glightbox="title: Sélection complète de turbans" data-aos="fade-up" data-aos-delay="300">
+                            <img src="images/Collection hiver de turbans 3 (Banner).jpg" alt="Sélection complète de turbans" class="w-full h-72 object-cover">
+                            <div class="overlay">
+                                <p class="font-semibold">Notre sélection</p>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Section Produits -->
-        <section class="py-12 px-4 bg-blue-50">
+        <section id="produits" class="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl font-bold text-orange-500 text-center mb-8">🧴 Nos Produits</h2>
+                <h2 class="text-3xl font-bold text-orange-500 text-center mb-2" data-aos="fade-up">🧴 Nos Produits</h2>
+                <p class="text-center text-gray-600 mb-10" data-aos="fade-up">Des soins professionnels de qualité</p>
+                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                        <img src="images/produit.jpg" alt="Produits professionnels" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                        <div class="p-4">
-                            <p class="text-gray-700 font-medium">Produits professionnels</p>
+                    <a href="images/produit.jpg" class="glightbox gallery-item" data-gallery="produits" data-glightbox="title: Produits professionnels de coiffure" data-aos="fade-up" data-aos-delay="100">
+                        <img src="images/produit.jpg" alt="Produits professionnels de coiffure" class="w-full h-64 object-cover">
+                        <div class="overlay">
+                            <p class="font-semibold">Produits professionnels</p>
                         </div>
-                    </div>
-                    <div class="card-hover rounded-xl overflow-hidden shadow-lg bg-white">
-                        <img src="images/produit2.jpg" alt="Gamme de soins" class="w-full h-64 object-cover" width="400" height="256" loading="lazy">
-                        <div class="p-4">
-                            <p class="text-gray-700 font-medium">Gamme de soins</p>
+                    </a>
+                    <a href="images/produit2.jpg" class="glightbox gallery-item" data-gallery="produits" data-glightbox="title: Gamme de soins capillaires" data-aos="fade-up" data-aos-delay="200">
+                        <img src="images/produit2.jpg" alt="Gamme de soins capillaires professionnels" class="w-full h-64 object-cover">
+                        <div class="overlay">
+                            <p class="font-semibold">Gamme de soins</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Call to Action -->
-        <section class="py-16 px-4 bg-gradient-to-r from-orange-500 to-orange-400 text-center">
+        <section class="py-16 px-4 bg-gradient-to-r from-orange-500 to-orange-400 text-center" data-aos="fade-up">
             <h2 class="text-3xl font-bold text-white mb-4">Envie d'une nouvelle coiffure ?</h2>
-            <p class="text-xl text-white mb-8">Prenez rendez-vous avec Sandrine et Nathalie</p>
-            <a href="index.html#contact" class="inline-block bg-white text-orange-500 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
-                📞 Nous contacter
-            </a>
+            <p class="text-xl text-white/90 mb-8">Prenez rendez-vous avec Sandrine et Nathalie</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="tel:0682686343" class="inline-flex items-center gap-2 bg-white text-orange-500 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all">
+                    📞 06.82.68.63.43
+                </a>
+                <a href="index.html#contact" class="inline-flex items-center gap-2 bg-orange-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all border-2 border-white/30">
+                    ✉️ Nous contacter
+                </a>
+            </div>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 text-center" role="contentinfo">
-        <p class="mb-2">©2025 Aux P'tits Soins Coiffure</p>
-        <p class="text-gray-400 text-sm">Salon de coiffure | Prothésiste Capillaire | Onco-coiffure | Valmondois 95</p>
-        <div class="mt-4">
-            <a href="https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors text-lg" aria-label="Suivez-nous sur Facebook (ouvre dans un nouvel onglet)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                Suivez-nous sur Facebook
-            </a>
+        <div class="container mx-auto px-4">
+            <p class="mb-2 text-lg">©2025 Aux P'tits Soins Coiffure</p>
+            <p class="text-gray-400 text-sm mb-4">Salon de coiffure | Prothésiste Capillaire | Onco-coiffure | Valmondois 95</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-6">
+                <a href="https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    Facebook
+                </a>
+                <a href="index.html" class="text-white hover:text-orange-400 transition-colors">Accueil</a>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-4">
+                <a href="mentions-legales.html" class="footer-link text-sm">Mentions légales & RGPD</a>
+            </div>
         </div>
     </footer>
+
+    <!-- Scripts JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        // Menu mobile
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        
+        // Initialiser AOS (Animate on Scroll)
+        AOS.init({
+            duration: 600,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+        
+        // Initialiser GLightbox pour les images
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: true,
+            openEffect: 'zoom',
+            closeEffect: 'fade',
+            cssEfects: {
+                fade: { in: 'fadeIn', out: 'fadeOut' },
+                zoom: { in: 'zoomIn', out: 'zoomOut' }
+            }
+        });
+        
+        // Smooth scroll pour la navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

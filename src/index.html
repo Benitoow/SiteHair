@@ -118,13 +118,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://unpkg.com">
     
-    <!-- CSS critique inline -->
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="/src/styles/global.css">
+    
+    <!-- AOS - Animate on Scroll -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- GLightbox - Galerie lightbox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    
+    <!-- CSS critique inline (le reste est dans global.css) -->
     <style>
-        body { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; background: #f8fafc; }
-        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
-        .btn { display: inline-block; padding: 1rem 2rem; background: #FF6F00; color: white; border-radius: 9999px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
-        .btn:hover { background: #E65100; transform: scale(1.05); }
+        body { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; background: #fafafa; }
     </style>
     
     <!-- Tailwind (déféré) -->
@@ -140,6 +145,30 @@
     <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js" defer></script>
     <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js" defer></script>
     <script src="/src/scripts/main.js" defer></script>
+    <script>
+        // Menu mobile
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+        // Formulaire mailto
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const message = document.getElementById('message').value;
+                    const subject = encodeURIComponent('Demande de rendez-vous - ' + name);
+                    const body = encodeURIComponent('Nom: ' + name + '\nTéléphone: ' + phone + '\n\nMessage:\n' + message);
+                    window.location.href = 'mailto:sandrine12rousseau@orange.fr?subject=' + subject + '&body=' + body;
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -147,29 +176,110 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <a href="#accueil" class="text-2xl font-bold" style="color: #333;">Aux P'tits Soins Coiffure</a>
             <nav role="navigation" aria-label="Navigation principale">
-                <ul class="hidden md:flex space-x-6">
+                <ul class="desktop-nav flex space-x-6">
                     <li><a href="#accueil" style="color: #333;">Accueil</a></li>
                     <li><a href="#onco-coiffure" style="color: #333;">Onco-Coiffure & Prothésiste</a></li>
                     <li><a href="#prestations" style="color: #333;">Prestations</a></li>
                     <li><a href="galerie.html" style="color: #333;">Galerie</a></li> 
                     <li><a href="#contact" style="color: #333;">Contact</a></li>
                 </ul>
+                <!-- Menu burger mobile -->
+                <div class="burger" onclick="toggleMobileMenu()" aria-label="Menu" role="button" tabindex="0">
+                    <span></span><span></span><span></span>
+                </div>
             </nav>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#accueil" onclick="closeMobileMenu()">Accueil</a>
+                <a href="#onco-coiffure" onclick="closeMobileMenu()">Onco-Coiffure & Prothésiste</a>
+                <a href="#prestations" onclick="closeMobileMenu()">Prestations</a>
+                <a href="galerie.html">Galerie</a>
+                <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+            </div>
         </div>
     </header>
 
+    <!-- Boutons flottants de contact -->
+    <div class="floating-contact">
+        <a href="tel:0682686343" class="floating-btn phone" aria-label="Appeler le salon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+        <a href="mailto:sandrine12rousseau@orange.fr" class="floating-btn email" aria-label="Envoyer un email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+    </div>
+
     <main role="main">
-    <!-- Section Accueil simple et claire -->
+    <!-- Section Accueil avec animations -->
     <section id="accueil" class="py-20 bg-gradient-to-b from-orange-50 to-white pt-28">
         <div class="container mx-auto text-center px-4">
-            <h1 class="text-5xl font-bold mb-6" style="color: #FF6F00;">Aux P'tits Soins Coiffure</h1>
-            <h2 class="text-3xl mb-6" style="color: #333;">Onco-Coiffure | Prothésiste Capillaire | Salon de Coiffure</h2>
-            <p class="text-xl mb-4" style="color: #666;">Valmondois 95</p>
-            <p class="text-lg mb-8 max-w-3xl mx-auto" style="color: #555;">Sandrine et Nathalie, coiffeuses visagistes expérimentées, vous accueillent dans leur salon chaleureux et convivial où elles prennent le temps pour chacun et chacune d'entre vous.</p>
-            <div class="text-lg mb-8">
+            <h1 class="text-5xl font-bold mb-6" style="color: #FF6F00;" data-aos="fade-down">Aux P'tits Soins Coiffure</h1>
+            <h2 class="text-3xl mb-6" style="color: #333;" data-aos="fade-up" data-aos-delay="100">Onco-Coiffure | Prothésiste Capillaire | Salon de Coiffure</h2>
+            <p class="text-xl mb-4" style="color: #666;" data-aos="fade-up" data-aos-delay="200">Valmondois 95</p>
+            <p class="text-lg mb-8 max-w-3xl mx-auto" style="color: #555;" data-aos="fade-up" data-aos-delay="300">Sandrine et Nathalie, coiffeuses visagistes expérimentées, vous accueillent dans leur salon chaleureux et convivial où elles prennent le temps pour chacun et chacune d'entre vous.</p>
+            <div class="text-lg mb-8" data-aos="fade-up" data-aos-delay="400">
                 <p class="font-semibold" style="color: #FF6F00;">Du Mardi au Samedi : 10h - 19h</p>
             </div>
-            <a href="#contact" class="btn">Prendre rendez-vous</a>
+            <a href="#contact" class="btn" data-aos="zoom-in" data-aos-delay="500">Prendre rendez-vous</a>
+        </div>
+    </section>
+
+    <!-- Section Certifications en évidence -->
+    <section class="py-8 bg-white border-y border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+                <div class="certification-badge flex items-center gap-4" data-aos="fade-right">
+                    <img src="/src/images/Logo_Institut_national_du_cancer.svg.png" alt="Certifié Institut National du Cancer INCa" class="h-14 md:h-16 object-contain">
+                    <div>
+                        <p class="font-bold text-gray-800">Certifié INCa</p>
+                        <p class="text-sm text-gray-500">Institut National du Cancer</p>
+                    </div>
+                </div>
+                <div class="certification-badge flex items-center gap-4" data-aos="fade-left">
+                    <img src="/src/images/Aide-financiere-Securite-sociale.jpg" alt="Agréé Sécurité Sociale CPAM" class="h-14 md:h-16 object-contain">
+                    <div>
+                        <p class="font-bold text-gray-800">Agréé CPAM</p>
+                        <p class="text-sm text-gray-500">Prothèses remboursées</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Pourquoi Nous (USP) -->
+    <section id="pourquoi-nous" class="py-16 bg-gradient-to-b from-white to-orange-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-4 text-center" style="color: #FF6F00;" data-aos="fade-up">Pourquoi nous choisir ?</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Un salon pas comme les autres, où chaque client est unique</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- USP 1 -->
+                <div class="usp-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="usp-icon"><img src="/src/svg/heart.svg" alt="" class="w-8 h-8"></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Accompagnement Humain</h3>
+                    <p class="text-gray-600 text-sm">Un suivi personnalisé et bienveillant, surtout pour les parcours de soins difficiles</p>
+                </div>
+                
+                <!-- USP 2 -->
+                <div class="usp-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="usp-icon"><img src="/src/svg/certification.svg" alt="" class="w-8 h-8"></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Expertise Certifiée</h3>
+                    <p class="text-gray-600 text-sm">Certifiées INCa et agréées CPAM pour les prothèses capillaires remboursées</p>
+                </div>
+                
+                <!-- USP 3 -->
+                <div class="usp-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="usp-icon"><img src="/src/svg/home.svg" alt="" class="w-8 h-8"></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Cadre Intimiste</h3>
+                    <p class="text-gray-600 text-sm">Un salon de village cosy et chaleureux, loin des grandes enseignes impersonnelles</p>
+                </div>
+                
+                <!-- USP 4 -->
+                <div class="usp-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="usp-icon"><img src="/src/svg/work.svg" alt="" class="w-8 h-8"></div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">30+ Ans d'Expérience</h3>
+                    <p class="text-gray-600 text-sm">Sandrine et Nathalie, coiffeuses visagistes passionnées depuis des décennies</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -178,7 +288,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold mb-8 text-center" style="color: #FF6F00;">Onco-Coiffure - Prothésiste Capillaire</h2>
             <div class="max-w-4xl mx-auto">
-                <img src="/src/images/onco-coiffure.webp" alt="Onco-coiffure et Prothésiste Capillaire" class="mb-6 rounded-lg shadow-lg" width="896" height="504" loading="lazy">
+                <img src="/src/images/onco-coiffure.webp" alt="Service Onco-coiffure et Prothésiste Capillaire - Accompagnement personnalisé pour patients en chimiothérapie à Valmondois 95" class="mb-6 rounded-lg shadow-lg" width="896" height="504" loading="lazy">
                 
                 <div class="bg-orange-50 p-8 rounded-lg mb-6" style="background-color: #FFF3E0;">
                     <p class="text-lg mb-4 leading-relaxed" style="color: #333;">
@@ -226,13 +336,13 @@
     <!-- Section Prestations Coiffure -->
     <section id="prestations" class="py-20" style="background-color: #f8fafc;">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold mb-12 text-center" style="color: #FF6F00;">Nos Prestations Coiffure</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center" style="color: #FF6F00;" data-aos="fade-up">Nos Prestations Coiffure</h2>
             
             <div class="grid md:grid-cols-3 gap-8 mb-12">
                 <!-- Femme -->
-                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestations Femme</h3>
-                    <img src="/src/images/female-back-with-long-straight-blonde-hair-hairdressing-salon_285484-1791 (1).jpg" alt="Coiffure femme" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <img src="/src/images/female-back-with-long-straight-blonde-hair-hairdressing-salon_285484-1791 (1).jpg" alt="Coiffure femme - Cheveux longs blonds lisses réalisés au salon Aux P'tits Soins Coiffure Valmondois" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
                     <ul class="space-y-2" style="list-style: none; padding-left: 0;">
                         <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
                             <span style="color: #333;">Shampooing Coupe Brushing</span>
@@ -271,9 +381,9 @@
                 </div>
 
                 <!-- Homme -->
-                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;" data-aos="fade-up" data-aos-delay="200">
                     <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestations Homme</h3>
-                    <img src="/src/images/coiffure-homme.webp" alt="Coiffure homme" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <img src="/src/images/coiffure-homme.webp" alt="Coupe homme tendance réalisée par coiffeuse visagiste à Valmondois Val-d'Oise" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
                     <ul class="space-y-2" style="list-style: none; padding-left: 0;">
                         <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
                             <span style="color: #333;">Coupe</span>
@@ -287,9 +397,9 @@
                 </div>
 
                 <!-- Enfant -->
-                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestation Enfant</h3>
-                    <img src="/src/images/coiffure-enfant.webp" alt="Coiffure enfant" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <img src="/src/images/coiffure-enfant.webp" alt="Coupe enfant moins de 10 ans - Salon de coiffure familial Valmondois 95760" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
                     <ul class="space-y-2" style="list-style: none; padding-left: 0;">
                         <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
                             <span style="color: #333;">Coupe (moins de 10 ans)</span>
@@ -301,34 +411,189 @@
         </div>
     </section>
 
+    <!-- Section Témoignages -->
+    <section id="avis" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-4 text-center" style="color: #FF6F00;">Ce que disent nos clients</h2>
+            <div class="flex items-center justify-center gap-2 mb-12">
+                <div class="flex text-yellow-400 text-2xl">★★★★★</div>
+                <span class="text-gray-600 text-lg">5/5 sur Google</span>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Avis 1 - Ahmed -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">A</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Ahmed Jeb</p>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Salon agréable et facilement accessible. Sandrine est une personne professionnelle, son accueil est chaleureux."</p>
+                    <p class="text-gray-400 text-xs mt-3">via Google</p>
+                </div>
+
+                <!-- Avis 2 - Brigitte -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">B</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Brigitte Glay</p>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Merci pour ce concept de salon de village. A la fois cosy, moderne et sans chichi."</p>
+                    <p class="text-gray-400 text-xs mt-3">via Google</p>
+                </div>
+
+                <!-- Avis 3 - Patricia -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center text-white font-bold text-xl">P</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Patricia Carrillo</p>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Joli salon cosy. Coiffeuse très professionnelle... conseils avisés."</p>
+                    <p class="text-gray-400 text-xs mt-3">via Google</p>
+                </div>
+
+                <!-- Avis 4 - Pierre -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">P</div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Pierre Nardou</p>
+                            <div class="flex text-yellow-400 text-sm">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">"Très satisfaisant, un salon agréable et mignon. Sandrine est de très bon conseil. Je reviendrais à coup sûr!"</p>
+                    <p class="text-gray-400 text-xs mt-3">via Google</p>
+                </div>
+            </div>
+
+            <!-- Lien vers Google -->
+            <div class="text-center mt-10">
+                <a href="https://www.google.com/maps/place/Aux+p%E2%80%99tits+soins+coiffure/@49.0963406,2.1901067,46m/data=!3m1!1e3!4m6!3m5!1s0x47e65f8955fa115b:0xe70feee7918ab471!8m2!3d49.0964118!4d2.190189!16s%2Fg%2F11spr1wb5w?entry=ttu" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-orange-500 hover:text-orange-600 font-semibold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+                    Voir tous nos avis Google
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Section Contact -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-20" style="background-color: #f8fafc;">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold mb-8 text-center" style="color: #FF6F00;">Nous Contacter</h2>
-            <div class="max-w-2xl mx-auto text-center mb-8">
-                <p class="text-xl mb-4" style="color: #333;"><strong>📍 28 bis grande rue, 95760 Valmondois</strong></p>
-                <p class="text-xl mb-4" style="color: #333;"><strong>📞 <a href="tel:0682686343" style="color: #FF6F00;">06.82.68.63.43</a></strong></p>
-                <p class="text-xl mb-4" style="color: #333;"><strong>✉️ <a href="mailto:sandrine12rousseau@orange.fr" style="color: #FF6F00;">sandrine12rousseau@orange.fr</a></strong></p>
-                <p class="text-lg font-semibold" style="color: #FF6F00;">Du Mardi au Samedi : 10h - 19h</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto mb-12">
+                <!-- Infos de contact -->
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-semibold mb-6" style="color: #333;">Prenez rendez-vous</h3>
+                    <p class="text-gray-600 mb-6">Par téléphone ou par email, Sandrine et Nathalie vous répondent rapidement !</p>
+                    
+                    <div class="space-y-4">
+                        <a href="tel:0682686343" class="flex items-center gap-4 p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors group">
+                            <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-content center text-white group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="mx-auto"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800">Appelez-nous</p>
+                                <p class="text-green-600 text-lg font-bold">06.82.68.63.43</p>
+                            </div>
+                        </a>
+                        
+                        <a href="mailto:sandrine12rousseau@orange.fr?subject=Demande de rendez-vous - Aux P'tits Soins Coiffure" class="flex items-center gap-4 p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors group">
+                            <div class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800">Écrivez-nous</p>
+                                <p class="text-orange-600 text-lg font-bold">sandrine12rousseau@orange.fr</p>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-xl font-semibold" style="color: #FF6F00;">🕐 Du Mardi au Samedi : 10h - 19h</p>
+                        <p class="text-gray-600 mt-2">📍 28 bis grande rue, 95760 Valmondois</p>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="bg-gray-50 p-6 rounded-xl">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #333;">Envoyez-nous un message</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Votre nom</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" placeholder="Marie Dupont">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Votre téléphone</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all" placeholder="06 12 34 56 78">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Votre message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all resize-none" placeholder="Bonjour, je souhaite prendre rendez-vous pour..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div id="map" style="height: 400px; width: 100%;" class="rounded-lg shadow-lg" role="img" aria-label="Carte de localisation du salon Aux P'tits Soins Coiffure"></div>
+            
+            <div id="map" style="height: 400px; width: 100%;" class="rounded-lg shadow-lg" role="img" aria-label="Carte de localisation du salon Aux P'tits Soins Coiffure à Valmondois"></div>
         </div>
     </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-6" role="contentinfo">
-        <div class="container mx-auto text-center">
-            <p class="mb-2">©2025 Aux P'tits Soins Coiffure</p>
-            <p class="text-sm">Salon de coiffure | Prothésiste Capillaire | Onco-coiffure | Valmondois 95</p>
-            <div class="mt-4">
-                <a href="https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors text-lg" aria-label="Suivez-nous sur Facebook (ouvre dans un nouvel onglet)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <footer class="bg-gray-800 text-white py-8" role="contentinfo">
+        <div class="container mx-auto text-center px-4">
+            <p class="mb-2 text-lg">©2025 Aux P'tits Soins Coiffure</p>
+            <p class="text-gray-400 text-sm mb-4">Salon de coiffure | Prothésiste Capillaire | Onco-coiffure | Valmondois 95</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-6">
+                <a href="https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                     </svg>
-                    Suivez-nous sur Facebook
+                    Facebook
                 </a>
+                <a href="https://www.google.com/maps/place/Aux+p%E2%80%99tits+soins+coiffure/@49.0963406,2.1901067" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C7.31 0 3.5 3.81 3.5 8.5c0 5.25 7.5 14.5 8.5 14.5s8.5-9.25 8.5-14.5C20.5 3.81 16.69 0 12 0zm0 12c-1.93 0-3.5-1.57-3.5-3.5S10.07 5 12 5s3.5 1.57 3.5 3.5S13.93 12 12 12z"/></svg>
+                    Google Maps
+                </a>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-4">
+                <a href="mentions-legales.html" class="footer-link text-sm">Mentions légales & RGPD</a>
             </div>
         </div>
     </footer>
+
+    <!-- Scripts JS -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script>
+        // Initialiser AOS (Animate on Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 50
+        });
+        
+        // Initialiser GLightbox pour les images
+        const lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true
+        });
+    </script>
 </body>
 </html>

@@ -21,15 +21,19 @@ document.querySelectorAll('.prestation-details').forEach(details => {
 
 // Fonction d'initialisation de la carte
 function initMap() {
-  const salonLocation = [49.09635, 2.190219]; // Coordonnées de l'adresse
-  const map = L.map('map').setView(salonLocation, 15);
+  const mapElement = document.getElementById('map');
+  if (!mapElement) return;
+  
+  // Coordonnées exactes pour 28 bis grande rue, 95760 Valmondois
+  const salonLocation = [49.09650, 2.19050];
+  const map = L.map('map').setView(salonLocation, 16);
 
   L.maplibreGL({
     style: 'https://tiles.openfreemap.org/styles/liberty',
   }).addTo(map);
 
   L.marker(salonLocation).addTo(map)
-    .bindPopup('Aux P\'tits Soins Coiffure')
+    .bindPopup('<strong>Aux P\'tits Soins Coiffure</strong><br>28 bis grande rue<br>95760 Valmondois')
     .openPopup();
 }
 
@@ -47,13 +51,10 @@ sections.forEach(section => observer.observe(section));
 
 // Initialize map
 document.addEventListener('DOMContentLoaded', () => {
-    const map = L.map('map').setView([49.1193, 2.2008], 15);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    const marker = L.marker([49.1193, 2.2008]).addTo(map);
-    marker.bindPopup("<b>Aux P'tits Soins Coiffure</b><br>28 bis grande rue<br>95760 Valmondois").openPopup();
+    const mapElement = document.getElementById('map');
+    if (mapElement) {
+        // La carte est déjà initialisée dans initMap() au chargement de la page
+    }
 });
 
 // Mobile menu toggle

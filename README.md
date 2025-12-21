@@ -1,6 +1,40 @@
-# Hair Salon Website
+# Aux P'tits Soins Coiffure - Site Web
 
-This is a website for a hair salon. It showcases the salon's services, stylists, and provides a platform for customers to book appointments.
+Site vitrine pour Aux P'tits Soins Coiffure, salon de coiffure spécialisé en **Onco-Coiffure** et **Prothésiste Capillaire** à Valmondois 95.
+
+## 🎯 Spécialités
+
+- **Onco-Coiffure** : Accompagnement personnalisé pendant le parcours de soins
+- **Prothésiste Capillaire** : Prothèses capillaires de qualité (AGRÉÉ CPAM)
+- **Coiffure Traditionnelle** : Services pour femmes, hommes et enfants
+
+## 📍 Localisation
+
+28 bis grande rue  
+95760 Valmondois  
+📞 06.82.68.63.43  
+✉️ sandrine12rousseau@orange.fr
+
+**Horaires** : Du Mardi au Samedi, 10h - 19h
+
+## 🚀 Technologies
+
+- HTML5
+- CSS3 (avec Tailwind CSS)
+- JavaScript
+- Leaflet (carte interactive)
+
+## 📱 Référencement
+
+Site optimisé pour le référencement auprès de l'Institut National du Cancer (INCa) avec les termes clés :
+- Salon de coiffure
+- Prothésiste capillaire
+- Onco-coiffure
+- Valmondois 95
+
+## 👩‍💼 À propos
+
+Sandrine et Nathalie, coiffeuses visagistes expérimentées, vous accueillent dans un salon chaleureux et convivial avec un accompagnement personnalisé et intimiste.
 
 ## Project Structure
 

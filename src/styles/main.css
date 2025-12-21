@@ -15,6 +15,16 @@
   --body-bg: #f8fafc;         /* Fond blanc cassé */
   --font-family: 'Poppins', sans-serif;
   --shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color-scheme: light !important; /* Force le mode clair */
+}
+
+/* Force le mode clair sur toute la page */
+html {
+  color-scheme: light !important;
+}
+
+body {
+  color-scheme: light !important;
 }
 
 /* Styles de base */
@@ -24,19 +34,28 @@
   box-sizing: border-box;
 }
 
+html {
+  background-color: #f8fafc !important;
+}
+
 body {
   font-family: var(--font-family);
-  color: var(--text-color);
+  color: #333 !important;
   font-size: 16px;
   line-height: 1.7;
-  background-color: var(--body-bg);
+  background-color: #f8fafc !important;
   padding-top: 80px; /* Adjust based on header height */
 }
 
+/* Force la lisibilité de tous les textes */
+p, span, li, div {
+  color: #333;
+}
+
 a {
-  color: var(--primary-color);
+  color: #FF6F00;
   text-decoration: none;
-  transition: color var(--transition-duration) ease;
+  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -79,7 +98,7 @@ ul {
 li {
   font-family: 'Poppins', sans-serif; /* Add your desired font family */
   font-size: 1rem; /* Adjust the font size if needed */
-  color: var(--text-color); /* Use a variable for text color */
+  color: #333 !important; /* Force le texte lisible */
 }
 
 img {
@@ -155,9 +174,9 @@ header {
   right: 0;
   z-index: 50;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.95); /* Increase opacity */
+  background-color: #FFFFFF !important; /* Force le fond blanc */
   backdrop-filter: blur(10px); /* Increase blur effect */
-  box-shadow: var(--shadow);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -188,7 +207,7 @@ nav li {
 
 nav a {
   display: inline-block;
-  color: #333;
+  color: #333 !important;
   text-decoration: none;
   padding: 0.75rem 1.25rem;
   transition: color 0.3s ease;
@@ -196,7 +215,7 @@ nav a {
 }
 
 nav a:hover {
-  color: var(--primary-color);
+  color: #FF6F00 !important;
 }
 
 /* Menu mobile */
@@ -247,42 +266,87 @@ nav a:hover {
 
 /* Section d'accueil */
 #accueil {
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80vh;
-  color: white;
-}
-
-#accueil .container {
-  text-align: center;
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFFFFF 100%);
+  min-height: auto;
+  padding: 6rem 0;
 }
 
 #accueil h1 {
-  font-size: 3.5rem;
+  color: #FF6F00;
+  font-size: 3rem;
   margin-bottom: 1.5rem;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-#accueil p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
+#accueil h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
-#accueil .btn {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
+/* Section Onco-Coiffure */
+#onco-coiffure {
+  background-color: #fff !important;
 }
 
-#accueil .btn:hover {
-  background-color: #FF8F00;
+#onco-coiffure h2 {
+  color: #FF6F00 !important;
+}
+
+#onco-coiffure h3 {
+  color: #FF6F00 !important;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+#onco-coiffure p {
+  color: #333 !important;
+}
+
+#onco-coiffure li {
+  color: #333 !important;
+}
+
+#onco-coiffure .bg-orange-50 {
+  background-color: #FFF3E0 !important;
+}
+
+#onco-coiffure .bg-blue-50 {
+  background-color: #E3F2FD !important;
+}
+
+/* Section Prestations */
+#prestations {
+  background-color: #f8fafc !important;
+}
+
+#prestations h2 {
+  color: #FF6F00 !important;
+}
+
+#prestations h3 {
+  color: #FF6F00 !important;
+}
+
+#prestations p {
+  color: #333 !important;
+}
+
+#prestations li {
+  color: #333 !important;
+}
+
+#prestations span {
+  color: #333 !important;
+}
+
+#prestations .p-6 {
+  background-color: transparent !important;
+}
+
+#prestations img {
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Hypnosis Section */
@@ -373,12 +437,12 @@ blockquote {
 /* Section de contact */
 #contact {
   background-color: #ffffff;
-  padding: 4rem 0;
+  padding: 6rem 0;
 }
 
 #contact h2 {
   font-size: 2.5rem;
-  color: var(--primary-color);
+  color: #FF6F00;
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -386,24 +450,23 @@ blockquote {
 #contact p {
   font-size: 1.125rem;
   color: var(--text-color);
-  text-align: center;
   margin-bottom: 1rem;
 }
 
 #contact a {
-  color: var(--primary-color);
+  color: #FF6F00;
   text-decoration: none;
   transition: color var(--transition-duration) ease;
 }
 
 #contact a:hover {
-  color: #E65100; /* Orange plus foncé */
+  color: #E65100;
 }
 
 #contact #map {
   border-radius: 8px;
   box-shadow: var(--shadow);
-  margin-bottom: 2rem;
+  margin-top: 2rem;
   aspect-ratio: 16/9;
   width: 100%;
 }
@@ -468,21 +531,21 @@ blockquote {
 
 /* Pied de page */
 footer {
-  background-color: var(--primary-color); /* Orange */
+  background-color: #2d3748;
   padding: 2rem 0;
   color: #fff;
   font-size: 0.9rem;
   text-align: center;
 }
 
-footer a {
-  color: #A5F3FC;
-  text-decoration: underline;
+footer p {
+  margin-bottom: 0.5rem;
+  color: #fff;
 }
 
-footer .container {
-  display: flex;
-  justify-content: center;
+footer a {
+  color: #FFB74D;
+  text-decoration: underline;
 }
 
 /* Classes utilitaires */
@@ -554,17 +617,17 @@ html {
   @apply mb-2 text-gray-700;
 }
 
-/* Add dark mode support */
-@media (prefers-color-scheme: dark) {
+/* Dark mode désactivé pour meilleure lisibilité */
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --body-bg: #1a1a1a;
-    --text-color: #f0f0f0;
+    --body-bg: #f8fafc;
+    --text-color: #333;
   }
   
   header {
-    background-color: rgba(26, 26, 26, 0.95);
+    background-color: rgba(255, 255, 255, 0.95);
   }
-}
+} */
 
 /* Add smooth transitions for all interactive elements */
 a, button, input, textarea {

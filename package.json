@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "description": "Website for a hair salon",
   "scripts": {
+    "dev": "npx tailwindcss -i ./src/styles/main.css -o ./src/styles/output.css --watch",
+    "build": "npx tailwindcss -i ./src/styles/main.css -o ./src/styles/output.css --minify",
     "start": "http-server -p 3000"
   },
   "dependencies": {
     "http-server": "^0.12.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
   }
 }

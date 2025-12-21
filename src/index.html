@@ -3,95 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/styles/main.css">
-    <script src="/src/scripts/main.js" defer></script>
-    <title>Aux P'tits Soins Coiffure</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#FF6F00">
+    <meta name="description" content="Salon de coiffure, Prothésiste capillaire, Onco-coiffure à Valmondois 95. Aux P'tits Soins Coiffure vous accompagne avec des soins personnalisés et des prothèses capillaires de qualité.">
+    <meta name="keywords" content="Coiffure, Prothésiste capillaire, Aux P'tits Soins Coiffure, Valmondois 95, Onco-coiffure, Salon de coiffure, perruque médicale, prothèse capillaire">
+    <meta name="author" content="Aux P'tits Soins Coiffure">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://auxptitssoinscoiffure.fr/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://auxptitssoinscoiffure.fr/">
+    <meta property="og:title" content="Aux P'tits Soins Coiffure | Prothésiste Capillaire | Valmondois 95">
+    <meta property="og:description" content="Salon de coiffure, Prothésiste capillaire et Onco-coiffure à Valmondois. Soins personnalisés et prothèses capillaires de qualité.">
+    <meta property="og:image" content="https://auxptitssoinscoiffure.fr/images/salon.jpg">
+    <meta property="og:locale" content="fr_FR">
+    
+    <!-- JSON-LD Schema pour Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Aux P'tits Soins Coiffure",
+        "description": "Salon de coiffure, Prothésiste capillaire et Onco-coiffure à Valmondois",
+        "image": "https://auxptitssoinscoiffure.fr/images/salon.jpg",
+        "telephone": "+33682686343",
+        "email": "sandrine12rousseau@orange.fr",
+        "url": "https://auxptitssoinscoiffure.fr",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "28 bis grande rue",
+            "addressLocality": "Valmondois",
+            "postalCode": "95760",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 49.09650,
+            "longitude": 2.19050
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "10:00",
+                "closes": "19:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Monday",
+                "opens": "CLOSED"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "CLOSED"
+            }
+        ],
+        "priceRange": "€€",
+        "areaServed": {
+            "@type": "City",
+            "name": "Valmondois",
+            "containedIn": {
+                "@type": "AdministrativeArea",
+                "name": "Val-d'Oise",
+                "containedIn": {
+                    "@type": "Country",
+                    "name": "FR"
+                }
+            }
+        },
+        "serviceType": ["Hair Salon", "Hair Care", "Wig Services"],
+        "sameAs": [
+            "https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/"
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Aux P'tits Soins Coiffure",
+        "url": "https://auxptitssoinscoiffure.fr",
+        "logo": "https://auxptitssoinscoiffure.fr/images/salon.jpg",
+        "description": "Salon de coiffure spécialisé en Prothésiste Capillaire et Onco-coiffure à Valmondois (95)",
+        "foundingDate": "2020",
+        "founder": [
+            {
+                "@type": "Person",
+                "name": "Sandrine"
+            },
+            {
+                "@type": "Person",
+                "name": "Nathalie"
+            }
+        ],
+        "sameAs": [
+            "https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "telephone": "+33682686343",
+            "email": "sandrine12rousseau@orange.fr"
+        }
+    }
+    </script>
+
+    <title>Coiffure | Prothésiste Capillaire | Aux P'tits Soins Coiffure | Valmondois 95</title>
+    
+    <!-- Preconnect pour performances -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- CSS critique inline -->
+    <style>
+        body { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; background: #f8fafc; }
+        .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); }
+        .btn { display: inline-block; padding: 1rem 2rem; background: #FF6F00; color: white; border-radius: 9999px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn:hover { background: #E65100; transform: scale(1.05); }
+    </style>
+    
+    <!-- Tailwind (déféré) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- Fonts (non-bloquant) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Map (déféré) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" media="print" onload="this.media='all'" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js" defer></script>
-    <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" />
+    <link href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css" rel="stylesheet" media="print" onload="this.media='all'" />
     <script src="https://unpkg.com/maplibre-gl/dist/maplibre-gl.js" defer></script>
     <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js" defer></script>
+    <script src="/src/scripts/main.js" defer></script>
 </head>
 
 <body>
-    <header class="bg-white py-4 shadow-md fixed top-0 left-0 right-0 z-50">
+    <header class="bg-white py-4 shadow-md fixed top-0 left-0 right-0 z-50" role="banner" style="background-color: #FFFFFF !important;">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <a href="#accueil" class="text-2xl font-bold text-gray-800">Aux P'tits Soins Coiffure</a>
-            <nav>
+            <a href="#accueil" class="text-2xl font-bold" style="color: #333;">Aux P'tits Soins Coiffure</a>
+            <nav role="navigation" aria-label="Navigation principale">
                 <ul class="hidden md:flex space-x-6">
-                    <li><a href="#accueil" class="hover:text-blue-500">Accueil</a></li>
-                    <li><a href="#prestations" class="hover:text-blue-500">Prestations</a></li>
-                    <li><a href="galerie.html" class="hover:text-blue-500">Galerie</a></li> 
-                    <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+                    <li><a href="#accueil" style="color: #333;">Accueil</a></li>
+                    <li><a href="#onco-coiffure" style="color: #333;">Onco-Coiffure & Prothésiste</a></li>
+                    <li><a href="#prestations" style="color: #333;">Prestations</a></li>
+                    <li><a href="galerie.html" style="color: #333;">Galerie</a></li> 
+                    <li><a href="#contact" style="color: #333;">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section id="accueil" class="bg-cover bg-center py-32" style="background-image: url('./images/adobestock_219386080.webp')">
-        <div class="container mx-auto text-center text-white">
-            <h1 class="text-5xl font-bold mb-4">Bienvenue chez Aux P'tits Soins Coiffure - Oncocoiffure</h1>
-            <p class="text-lg mb-8">Découvrez nos services de coiffure pour femmes, hommes et enfants dans une ambiance chaleureuse et professionnelle</p>
+    <main role="main">
+    <!-- Section Accueil simple et claire -->
+    <section id="accueil" class="py-20 bg-gradient-to-b from-orange-50 to-white pt-28">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-5xl font-bold mb-6" style="color: #FF6F00;">Aux P'tits Soins Coiffure</h1>
+            <h2 class="text-3xl mb-6" style="color: #333;">Onco-Coiffure | Prothésiste Capillaire | Salon de Coiffure</h2>
+            <p class="text-xl mb-4" style="color: #666;">Valmondois 95</p>
+            <p class="text-lg mb-8 max-w-3xl mx-auto" style="color: #555;">Sandrine et Nathalie, coiffeuses visagistes expérimentées, vous accueillent dans leur salon chaleureux et convivial où elles prennent le temps pour chacun et chacune d'entre vous.</p>
+            <div class="text-lg mb-8">
+                <p class="font-semibold" style="color: #FF6F00;">Du Mardi au Samedi : 10h - 19h</p>
+            </div>
             <a href="#contact" class="btn">Prendre rendez-vous</a>
         </div>
     </section>
 
-    <section id="prestations" class="py-16">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-8">Nos Prestations</h2>
+    <!-- Section Onco-Coiffure et Prothésiste Capillaire (Mise en avant) -->
+    <section id="onco-coiffure" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-8 text-center" style="color: #FF6F00;">Onco-Coiffure - Prothésiste Capillaire</h2>
+            <div class="max-w-4xl mx-auto">
+                <img src="/src/images/onco-coiffure.webp" alt="Onco-coiffure et Prothésiste Capillaire" class="mb-6 rounded-lg shadow-lg" width="896" height="504" loading="lazy">
+                
+                <div class="bg-orange-50 p-8 rounded-lg mb-6" style="background-color: #FFF3E0;">
+                    <p class="text-lg mb-4 leading-relaxed" style="color: #333;">
+                        Découvrez notre service d'<strong>Onco-Coiffure</strong> et de <strong>Prothésiste Capillaire</strong>, où nous mettons tout notre cœur et notre expérience pour vous offrir un suivi <strong>chaleureux, personnalisé et intimiste</strong> dans votre parcours de soins.
+                    </p>
+                    <p class="text-lg mb-4 leading-relaxed" style="color: #333;">
+                        Nous vous proposons des <strong>soins capillaires naturels</strong> adaptés et des <strong>prothèses capillaires de qualité ultra confortables</strong>, conçues pour vous accompagner et retrouver confiance en vous.
+                    </p>
+                    <p class="text-lg mb-4 leading-relaxed" style="color: #333;">
+                        <strong>Nous vous accompagnons avant, pendant et après la chute des cheveux.</strong>
+                    </p>
+                </div>
 
-            <h3 class="text-2xl font-semibold mb-4">Femme</h3>
-            <img src="/src/images/female-back-with-long-straight-blonde-hair-hairdressing-salon_285484-1791 (1).jpg" alt="Exemple prestation femme" class="mb-4">
-            <ul class="list-disc pl-5">
-                <li>Shampooing Coupe Brushing: <span class="prix">40€</span></li>
-                <li>Shampooing Brushing: <span class="prix">25€</span></li>
-                <li>Shampooing Coupe Soin Brushing / Séchage Couleur: <span class="prix">69€</span></li>
-                <li>Shampooing Coupe Soin Brushing / Séchage Couleur INOA: <span class="prix">79€</span></li>
-                <li>Shampooing Coupe Soin Brushing Balayage: <span class="prix">79€</span></li>
-                <li>Shampooing Coupe Soin mini vague sans ammoniaque: <span class="prix">81€</span></li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold mb-4">Homme</h3>
-            <img src="/src/images/coiffure-homme.webp" alt="Exemple prestation homme" class="mb-4">
-            <ul class="list-disc pl-5">
-                <li>Coupe: <span class="prix">20€</span></li>
-                <li>Coupe Couronne: <span class="prix">15€</span></li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold mb-4">Enfant (moins de 10 ans)</h3>
-            <img src="/src/images/coiffure-enfant.webp" alt="Exemple prestation enfant" class="mb-4">
-            <ul class="list-disc pl-5">
-                <li>Coupe: <span class="prix">15€</span></li>
-            </ul>
-
-            <h3 class="text-2xl font-semibold mb-4">ONCO-COIFFURE - PROTHÉSISTE CAPILLAIRE</h3>
-            <img src="/src/images/onco-coiffure.webp" alt="Exemple onco-coiffure" class="mb-4">
-            <p>Découvrez notre service d'Onco-coiffure et de prothésiste capillaire où nous mettons tout notre cœur et notre expérience pour vous offrir un suivi chaleureux, personnalisé et intimiste dans votre parcours de soins.</p>
-            <p>Nous vous proposons des soins capillaires naturels et des prothèses capillaires de qualité ultra confortables adaptées à votre visage.</p>
-            <p>Nous vous accompagnons avant, pendant et après la chute des cheveux.</p>
-
-            <h3 class="text-2xl font-semibold mb-4">Tarifs</h3>
-            <ul class="list-disc pl-5">    
-                <h3>Tarifs</h3>
-                <ul>
-                    <li>Masque à l'argile, modelage crânien, des mains et des avant-bras aux huiles naturelles: <span class="prix">40€</span></li>
-                    <li>Mise à nu, masque à l'argile, modelage crânien, des mains et des avant bras: <span class="prix">60€</span></li>
-                    <li>Prothèses capillaires classe 1, 2, 3: différents tarifs (AGRÉE CPAM)</li>
+                <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Nos Services Onco-Coiffure</h3>
+                <ul class="list-disc pl-6 mb-6 space-y-2" style="color: #333;">
+                    <li style="color: #333;">Shampooing et soin hydratant, pose de masque à l'argile</li>
+                    <li style="color: #333;">Modelage crânien et des mains</li>
+                    <li style="color: #333;">Suivi et conseils de la mise en place de la prothèse capillaire</li>
+                    <li style="color: #333;">Accompagnement explicatif pour l'entretien de la prothèse capillaire</li>
                 </ul>
-                <p>N'hésitez pas à nous contacter, nous restons à votre disposition pour tous renseignements complémentaires.</p>
-            </div>
-        </section>
 
-    <section id="contact">
-        <h2>Nous Contacter</h2>
-        <p>28 bis grande rue 95760 Valmondois</p>
-        <p>06.82.68.63.43</p>
-        <p><a href="mailto:sandrine12rousseau@orange.fr">sandrine12rousseau@orange.fr</a></p>
-        <div id="map" style="height: 400px; width: 100%;"></div>
+                <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Tarifs Onco-Coiffure & Prothésiste Capillaire</h3>
+                <ul class="list-none space-y-3 mb-6">
+                    <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                        <span style="color: #333;">Masque à l'argile, modelage crânien, des mains et des avant-bras aux huiles naturelles</span>
+                        <span class="font-semibold" style="color: #FF6F00;">40€</span>
+                    </li>
+                    <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                        <span style="color: #333;">Mise à nu, masque à l'argile, modelage crânien, des mains et des avant-bras</span>
+                        <span class="font-semibold" style="color: #FF6F00;">60€</span>
+                    </li>
+                    <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                        <span style="color: #333;">Prothèses capillaires classe 1, 2, 3 (différents tarifs)</span>
+                        <span class="font-semibold" style="color: #FF6F00;">AGRÉÉ CPAM</span>
+                    </li>
+                </ul>
+
+                <div class="bg-blue-50 p-6 rounded-lg text-center" style="background-color: #E3F2FD;">
+                    <p class="text-lg font-semibold" style="color: #333;">N'hésitez pas à nous contacter, nous restons à votre disposition pour tous renseignements complémentaires.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>©2025 Aux P'tits Soins Coiffure </p>
+    <!-- Section Prestations Coiffure -->
+    <section id="prestations" class="py-20" style="background-color: #f8fafc;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center" style="color: #FF6F00;">Nos Prestations Coiffure</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Femme -->
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestations Femme</h3>
+                    <img src="/src/images/female-back-with-long-straight-blonde-hair-hairdressing-salon_285484-1791 (1).jpg" alt="Coiffure femme" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <ul class="space-y-2" style="list-style: none; padding-left: 0;">
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Coupe Brushing</span>
+                            <span class="font-semibold" style="color: #FF6F00;">40€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Brushing</span>
+                            <span class="font-semibold" style="color: #FF6F00;">25€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Coupe Soin Brushing / Séchage Couleur</span>
+                            <span class="font-semibold" style="color: #FF6F00;">69€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Coupe Soin Brushing / Séchage Couleur INOA</span>
+                            <span class="font-semibold" style="color: #FF6F00;">79€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Coupe Soin Brushing Balayage</span>
+                            <span class="font-semibold" style="color: #FF6F00;">79€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Shampooing Coupe Soin mini vague sans ammoniaque</span>
+                            <span class="font-semibold" style="color: #FF6F00;">81€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Soin Kératine</span>
+                            <span class="font-semibold" style="color: #FF6F00;">25€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Patine</span>
+                            <span class="font-semibold" style="color: #FF6F00;">15€</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm italic mt-4" style="color: #666;">* Les tarifs sont applicables pour les cheveux courts</p>
+                </div>
+
+                <!-- Homme -->
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestations Homme</h3>
+                    <img src="/src/images/coiffure-homme.webp" alt="Coiffure homme" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <ul class="space-y-2" style="list-style: none; padding-left: 0;">
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Coupe</span>
+                            <span class="font-semibold" style="color: #FF6F00;">20€</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Coupe Couronne</span>
+                            <span class="font-semibold" style="color: #FF6F00;">15€</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Enfant -->
+                <div class="card-hover p-6 rounded-lg" style="background-color: transparent;">
+                    <h3 class="text-2xl font-semibold mb-4" style="color: #FF6F00;">Prestation Enfant</h3>
+                    <img src="/src/images/coiffure-enfant.webp" alt="Coiffure enfant" class="mb-4 rounded-lg" width="400" height="300" loading="lazy">
+                    <ul class="space-y-2" style="list-style: none; padding-left: 0;">
+                        <li class="flex justify-between border-b pb-2" style="border-color: #E0E0E0;">
+                            <span style="color: #333;">Coupe (moins de 10 ans)</span>
+                            <span class="font-semibold" style="color: #FF6F00;">15€</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-8 text-center" style="color: #FF6F00;">Nous Contacter</h2>
+            <div class="max-w-2xl mx-auto text-center mb-8">
+                <p class="text-xl mb-4" style="color: #333;"><strong>📍 28 bis grande rue, 95760 Valmondois</strong></p>
+                <p class="text-xl mb-4" style="color: #333;"><strong>📞 <a href="tel:0682686343" style="color: #FF6F00;">06.82.68.63.43</a></strong></p>
+                <p class="text-xl mb-4" style="color: #333;"><strong>✉️ <a href="mailto:sandrine12rousseau@orange.fr" style="color: #FF6F00;">sandrine12rousseau@orange.fr</a></strong></p>
+                <p class="text-lg font-semibold" style="color: #FF6F00;">Du Mardi au Samedi : 10h - 19h</p>
+            </div>
+            <div id="map" style="height: 400px; width: 100%;" class="rounded-lg shadow-lg" role="img" aria-label="Carte de localisation du salon Aux P'tits Soins Coiffure"></div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6" role="contentinfo">
+        <div class="container mx-auto text-center">
+            <p class="mb-2">©2025 Aux P'tits Soins Coiffure</p>
+            <p class="text-sm">Salon de coiffure | Prothésiste Capillaire | Onco-coiffure | Valmondois 95</p>
+            <div class="mt-4">
+                <a href="https://www.facebook.com/people/Aux-ptits-soins-coiffure/100076858970700/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-white hover:text-orange-400 transition-colors text-lg" aria-label="Suivez-nous sur Facebook (ouvre dans un nouvel onglet)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                    Suivez-nous sur Facebook
+                </a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

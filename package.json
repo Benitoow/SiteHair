@@ -8,7 +8,7 @@
     "start": "http-server -p 3000"
   },
   "dependencies": {
-    "http-server": "^0.12.3"
+    "http-server": "^14.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.23",

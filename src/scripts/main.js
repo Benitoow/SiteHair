@@ -82,27 +82,62 @@ mobileMenuButton.addEventListener('click', () => {
     ul.classList.toggle('p-4');
 });
 
-// Validation du formulaire
+// Gestion du formulaire de contact
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
+  const form = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('submitBtn');
+  const btnText = document.getElementById('btnText');
   
-  form.addEventListener('submit', (event) => {
-    event.preventDefault(); // Empêche l'envoi du formulaire pour la démonstration
+  if (form) {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
 
-    // Validation personnalisée
-    const name = form.querySelector('#name').value.trim();
-    const email = form.querySelector('#email').value.trim();
-    const message = form.querySelector('#message').value.trim();
+      // Désactiver le bouton pendant l'envoi
+      submitBtn.disabled = true;
+      btnText.textContent = 'Envoi en cours...';
 
-    if (!name || !email || !message) {
-      alert('Veuillez remplir tous les champs obligatoires.');
-      return;
-    }
+      // Récupérer les données du formulaire
+      const formData = new FormData(form);
 
-    // Afficher un message de confirmation
-    alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+      try {
+        // Envoyer via Formspree
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-    // Réinitialiser le formulaire
-    form.reset();
-  });
+        if (response.ok) {
+          // Succès
+          formStatus.className = 'mb-4 p-4 rounded-lg bg-green-100 border border-green-400 text-green-700';
+          formStatus.textContent = '✅ Merci ! Votre message a été envoyé avec succès. Nous vous répondrons rapidement.';
+          formStatus.classList.remove('hidden');
+          form.reset();
+        } else {
+          // Erreur serveur
+          formStatus.className = 'mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-700';
+          formStatus.textContent = '❌ Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.';
+          formStatus.classList.remove('hidden');
+        }
+      } catch (error) {
+        // Erreur réseau
+        formStatus.className = 'mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-700';
+        formStatus.textContent = '❌ Erreur de connexion. Vérifiez votre connexion internet et réessayez.';
+        formStatus.classList.remove('hidden');
+      } finally {
+        // Réactiver le bouton
+        submitBtn.disabled = false;
+        btnText.textContent = 'Envoyer le message';
+        
+        // Masquer le message après 5 secondes
+        setTimeout(() => {
+          formStatus.classList.add('hidden');
+        }, 5000);
+      }
+    });
+  }
 });
+

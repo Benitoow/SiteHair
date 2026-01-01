@@ -101,11 +101,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .burger {
-    display: none;
+    display: none !important;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
     padding: 10px;
+    z-index: 100;
 }
 
 .burger span {
@@ -122,7 +123,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .burger {
-        display: flex;
+        display: flex !important;
+    }
+    
+    /* S'assurer qu'il n'y a qu'un seul burger visible */
+    nav .burger:not(:first-of-type) {
+        display: none !important;
     }
     
     .mobile-menu.active {
